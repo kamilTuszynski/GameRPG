@@ -1,0 +1,11 @@
+D:\Programowanie\c#\RPG\GameRPG\GameRPG\bin\Debug\GameRPG.exe.config
+D:\Programowanie\c#\RPG\GameRPG\GameRPG\bin\Debug\GameRPG.exe
+D:\Programowanie\c#\RPG\GameRPG\GameRPG\bin\Debug\GameRPG.pdb
+D:\Programowanie\c#\RPG\GameRPG\GameRPG\bin\Debug\Engine.dll
+D:\Programowanie\c#\RPG\GameRPG\GameRPG\bin\Debug\Engine.pdb
+D:\Programowanie\c#\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.csprojResolveAssemblyReference.cache
+D:\Programowanie\c#\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.GameRPG.resources
+D:\Programowanie\c#\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.Properties.Resources.resources
+D:\Programowanie\c#\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.csproj.GenerateResource.Cache
+D:\Programowanie\c#\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.exe
+D:\Programowanie\c#\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.pdb
