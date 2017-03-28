@@ -9,3 +9,6 @@ D:\Programowanie\c#\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.Properties.Resources.r
 D:\Programowanie\c#\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.csproj.GenerateResource.Cache
 D:\Programowanie\c#\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.exe
 D:\Programowanie\c#\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.pdb
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\bin\Debug\GameRPG.exe.config
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.exe
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.pdb

@@ -16,7 +16,7 @@ namespace GameRPG
     public partial class GameRPG : Form
     {
         private Player _player;        
-        private const string PLAYER_DATA_FILE_NAME = "D://Programowanie//c#//RPG//PlayerData.xml";
+        private const string PLAYER_DATA_FILE_NAME = "D://Programowanie//c#//RPG//GameRPG//PlayerData.xml";
 
         public GameRPG()
         {
