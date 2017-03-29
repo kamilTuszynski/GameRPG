@@ -10,7 +10,7 @@ namespace Engine
     {        
         public int AmountToHeal { get; set; }
 
-        public HealingPotion(int ID,string Name, int AmountToHeal):base(ID,Name)
+        public HealingPotion(int ID,string Name, int AmountToHeal, int Price):base(ID,Name,Price)
         {
             this.AmountToHeal = AmountToHeal;
         }

@@ -45,6 +45,7 @@
             this.btnSouth = new System.Windows.Forms.Button();
             this.btnWest = new System.Windows.Forms.Button();
             this.btnEast = new System.Windows.Forms.Button();
+            this.btnTrade = new System.Windows.Forms.Button();
             this.rtbLocation = new System.Windows.Forms.RichTextBox();
             this.rtbMessages = new System.Windows.Forms.RichTextBox();
             this.dgvInventory = new System.Windows.Forms.DataGridView();
@@ -210,6 +211,16 @@
             this.btnEast.UseVisualStyleBackColor = true;
             this.btnEast.Click += new System.EventHandler(this.btnEast_Click);
             // 
+            // btnTrade
+            // 
+            this.btnTrade.Location = new System.Drawing.Point(344, 541);
+            this.btnTrade.Name = "btnTrade";
+            this.btnTrade.Size = new System.Drawing.Size(75, 23);
+            this.btnTrade.TabIndex = 23;
+            this.btnTrade.Text = "Handluj";
+            this.btnTrade.UseVisualStyleBackColor = true;
+            this.btnTrade.Click += new System.EventHandler(this.btnTrade_Click);
+            // 
             // rtbLocation
             // 
             this.rtbLocation.Location = new System.Drawing.Point(406, 24);
@@ -306,6 +317,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnTrade);
+            this.MaximizeBox = false;
             this.Name = "GameRPG";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Meekhan";
@@ -342,6 +355,7 @@
         private System.Windows.Forms.DataGridView dgvQuests;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblMaxHitPoints;
+        private System.Windows.Forms.Button btnTrade;
     }
 }
 

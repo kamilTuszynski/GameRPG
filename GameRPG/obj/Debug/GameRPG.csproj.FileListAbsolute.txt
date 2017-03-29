@@ -12,3 +12,12 @@ D:\Programowanie\c#\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.pdb
 D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\bin\Debug\GameRPG.exe.config
 D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.exe
 D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.pdb
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\bin\Debug\GameRPG.exe
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\bin\Debug\GameRPG.pdb
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\bin\Debug\Engine.dll
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\bin\Debug\Engine.pdb
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.csprojResolveAssemblyReference.cache
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.GameRPG.resources
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.Properties.Resources.resources
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.TradingScreen.resources
+D:\Programowanie\GitHub\RPG\GameRPG\GameRPG\obj\Debug\GameRPG.csproj.GenerateResource.Cache

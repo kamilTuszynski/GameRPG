@@ -41,6 +41,8 @@ namespace Engine
         public const int LOCATION_ID_BRIDGE = 8;
         public const int LOCATION_ID_SPIDER_FIELD = 9;
 
+        public const int UNSELLABLE_ITEM_PRICE = -1;
+
         static World()
         {
             PopulateItems();
@@ -51,16 +53,16 @@ namespace Engine
 
         private static void PopulateItems()
         {
-            Items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Zardzewiały miecz", 1, 10));
-            Items.Add(new Item(ITEM_ID_RAT_TAIL, "Ogon szczura"));
-            Items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Kawałek futra"));
-            Items.Add(new Item(ITEM_ID_SNAKE_FANG, "Kieł węża"));
-            Items.Add(new Item(ITEM_ID_SNAKESKIN, "Skóra węża"));
-            Items.Add(new Weapon(ITEM_ID_CLUB, "Pałka", 5, 10));
-            Items.Add(new HealingPotion(ITEM_ID_HEALING_POTION, "Mikstura uzdrawiająca", 20));
-            Items.Add(new Item(ITEM_ID_SPIDER_FANG, "Kieł pająka"));
-            Items.Add(new Item(ITEM_ID_SPIDER_SILK, "Pajęczyna"));
-            Items.Add(new Item(ITEM_ID_ADVENTURER_PASS, "Przepustka podróżnika"));
+            Items.Add(new Weapon(ITEM_ID_RUSTY_SWORD, "Zardzewiały miecz", 1, 10,5));
+            Items.Add(new Item(ITEM_ID_RAT_TAIL, "Ogon szczura",5));
+            Items.Add(new Item(ITEM_ID_PIECE_OF_FUR, "Kawałek futra",10));
+            Items.Add(new Item(ITEM_ID_SNAKE_FANG, "Kieł węża",15));
+            Items.Add(new Item(ITEM_ID_SNAKESKIN, "Skóra węża",25));
+            Items.Add(new Weapon(ITEM_ID_CLUB, "Pałka", 5, 10,30));
+            Items.Add(new HealingPotion(ITEM_ID_HEALING_POTION, "Mikstura uzdrawiająca", 20,15));
+            Items.Add(new Item(ITEM_ID_SPIDER_FANG, "Kieł pająka",25));
+            Items.Add(new Item(ITEM_ID_SPIDER_SILK, "Pajęczyna",20));
+            Items.Add(new Item(ITEM_ID_ADVENTURER_PASS, "Przepustka podróżnika",UNSELLABLE_ITEM_PRICE));
         }
 
         private static void PopulateMonsters()
@@ -108,6 +110,12 @@ namespace Engine
             Location home = new Location(LOCATION_ID_HOME, "Dom", "Twój dom.");
 
             Location townSquare = new Location(LOCATION_ID_TOWN_SQUARE, "Rynek miasta", "Widzisz bazar i kupców zachwalających swoje towary.");
+
+            Vendor VendorInTownSquare = new Vendor("Kenneth");
+            VendorInTownSquare.AddItemToInventory(ItemByID(ITEM_ID_HEALING_POTION), 4);
+            VendorInTownSquare.AddItemToInventory(ItemByID(ITEM_ID_SNAKESKIN), 2);
+
+            townSquare.VendorWorkingHere = VendorInTownSquare;
 
             Location alchemistHut = new Location(LOCATION_ID_ALCHEMIST_HUT, "Chata alchemika", "Na pólkach widzisz dużo dziwnych, nieznanych ci roślin.");
             alchemistHut.QuestAvailableHere = QuestByID(QUEST_ID_CLEAR_ALCHEMIST_GARDEN);

@@ -35,6 +35,14 @@ namespace Engine
         {
             get { return Details.Name; }
         }
+        public int ItemID
+        {
+            get { return Details.ID; }
+        }
+        public int Price
+        {
+            get { return Details.Price; }
+        }
 
         public InventoryItem(Item Details,int Quantity)
         {

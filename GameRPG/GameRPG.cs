@@ -132,6 +132,13 @@ namespace GameRPG
             _player.UsePotion(potion);            
         }
 
+        private void btnTrade_Click(object sender, EventArgs e)
+        {
+            TradingScreen tradingScreen = new TradingScreen(_player);
+            tradingScreen.StartPosition = FormStartPosition.CenterParent;
+            tradingScreen.ShowDialog(this);
+        }
+
         private void rtbMessages_TextChanged(object sender, EventArgs e)
         {
             rtbMessages.SelectionStart = rtbMessages.Text.Length;
@@ -177,6 +184,8 @@ namespace GameRPG
                 btnSouth.Visible = (_player.CurrentLocation.LocationToSouth != null);
                 btnEast.Visible = (_player.CurrentLocation.LocationToEast != null);
                 btnWest.Visible = (_player.CurrentLocation.LocationToWest != null);
+
+                btnTrade.Visible = (_player.CurrentLocation.VendorWorkingHere != null);
 
                 rtbLocation.Text = _player.CurrentLocation.Name + Environment.NewLine;
                 rtbLocation.Text += _player.CurrentLocation.Description;

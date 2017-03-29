@@ -11,7 +11,7 @@ namespace Engine
         public int MinimumDamage { get; set; }
         public int MaximumDamage { get; set; }
 
-        public Weapon(int ID,string Name, int MinimumDamage, int MaximumDamage):base(ID,Name)
+        public Weapon(int ID,string Name, int MinimumDamage, int MaximumDamage, int Price):base(ID,Name,Price)
         {
             this.MinimumDamage = MinimumDamage;
             this.MaximumDamage = MaximumDamage;

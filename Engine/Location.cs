@@ -18,6 +18,7 @@ namespace Engine
         public Location LocationToEast { get; set; }
         public Location LocationToSouth { get; set; }
         public Location LocationToWest { get; set; }
+        public Vendor VendorWorkingHere { get; set; }
 
         public Location(int ID, string Name, string Description,Monster MonsterLivingHere=null,Quest QuestAvailableHere=null,
             Item ItemRequiredToEnter=null)
