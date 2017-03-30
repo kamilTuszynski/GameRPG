@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Engine;
+using System;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq;
 using System.Windows.Forms;
-
-using Engine;
 
 namespace GameRPG
 {
@@ -21,27 +15,12 @@ namespace GameRPG
         public GameRPG()
         {
             InitializeComponent();
+            LoadGameData();
 
-            _player = PlayerDataMapper.CreateFromDatabase();
-            //_player = Player.CreateDefaultPlayer();
 
-            if (_player==null)
-            {
-                _player = Player.CreateDefaultPlayer();
-                //if (File.Exists(PLAYER_DATA_FILE_NAME))
-                //{
-                //    _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
-                //}
-                //else
-                //{
-                //    _player = Player.CreateDefaultPlayer();
-                //}
-            }
-            
-            
 
             //bindowanie statystyk
-            lblHitPoints.DataBindings.Add(new Binding("Text",_player,"CurrentHitPoints"));
+            lblHitPoints.DataBindings.Add(new Binding("Text", _player, "CurrentHitPoints"));
             lblMaxHitPoints.DataBindings.Add(new Binding("Text", _player, "MaxHitPoints"));
             lblExperience.DataBindings.Add(new Binding("Text", _player, "Experience"));
             lblGold.DataBindings.Add(new Binding("Text", _player, "Gold"));
@@ -59,12 +38,12 @@ namespace GameRPG
             {
                 HeaderText = "Nazwa",
                 Width = 197,
-                DataPropertyName = "Description"                
+                DataPropertyName = "Description"
             });
             dgvInventory.Columns.Add(new DataGridViewTextBoxColumn
             {
-                HeaderText="Ilość",
-                DataPropertyName="Quantity"
+                HeaderText = "Ilość",
+                DataPropertyName = "Quantity"
             });
 
 
@@ -106,7 +85,24 @@ namespace GameRPG
 
             _player.PropertyChanged += PlayerOnPropertyChanged;
             _player.OnMessage += DisplayMessage;
-            _player.OnDeath += DisplayDeath;      
+            _player.OnDeath += DisplayDeath;
+        }
+
+        private void LoadGameData()
+        {
+            _player = PlayerDataMapper.CreateFromDatabase();
+
+            if (_player == null)
+            {
+                if (File.Exists(PLAYER_DATA_FILE_NAME))
+                {
+                    _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
+                }
+                else
+                {
+                    _player = Player.CreateDefaultPlayer();
+                }
+            }
         }
 
         private void btnNorth_Click(object sender, EventArgs e)
@@ -155,6 +151,11 @@ namespace GameRPG
         }
 
         private void GameRPG_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveGameData();
+        }
+
+        private void SaveGameData()
         {
             File.WriteAllText(PLAYER_DATA_FILE_NAME, _player.ToXmlString());
 
