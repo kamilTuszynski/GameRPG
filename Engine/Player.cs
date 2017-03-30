@@ -201,7 +201,7 @@ namespace Engine
 
             if(ii==null)
             {
-                Inventory.Add(new InventoryItem(itemToAdd, 1));
+                Inventory.Add(new InventoryItem(itemToAdd, quantity));
             }
             else
             {
@@ -564,7 +564,7 @@ namespace Engine
         public static Player CreatePlayerFromDatabase(int currentHitPoints,int maxHitPoints,
             int gold, int experience)
         {
-            Player player = new Player(currentHitPoints, maxHitPoints, gold, experience);
+            Player player = new Player(gold, experience, currentHitPoints, maxHitPoints);
 
             return player;
         }

@@ -19,7 +19,6 @@ namespace Engine
             {
                 _details = value;
                 OnPropertyChanged("Details");
-                OnPropertyChanged("Name");
             }
         }
         public bool IsCompleted
@@ -29,6 +28,7 @@ namespace Engine
             {
                 _isCompleted = value;
                 OnPropertyChanged("IsCompleted");
+                OnPropertyChanged("Name");
             }
         }
         public string Name { get { return Details.Name; } }       

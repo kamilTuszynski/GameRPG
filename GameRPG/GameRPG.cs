@@ -23,8 +23,9 @@ namespace GameRPG
             InitializeComponent();
 
             _player = PlayerDataMapper.CreateFromDatabase();
+            //_player = Player.CreateDefaultPlayer();
 
-            if(_player==null)
+            if (_player==null)
             {
                 _player = Player.CreateDefaultPlayer();
                 //if (File.Exists(PLAYER_DATA_FILE_NAME))
