@@ -19,6 +19,10 @@ namespace Engine
         public Location LocationToSouth { get; set; }
         public Location LocationToWest { get; set; }
         public Vendor VendorWorkingHere { get; set; }
+        public bool HasQuest
+        {
+            get { return QuestAvailableHere != null; }
+        }
 
         public Location(int ID, string Name, string Description,Monster MonsterLivingHere=null,Quest QuestAvailableHere=null,
             Item ItemRequiredToEnter=null)

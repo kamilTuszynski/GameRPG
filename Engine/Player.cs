@@ -60,6 +60,7 @@ namespace Engine
             get { return Inventory.Where(x => x.Details is HealingPotion).Select(x => x.Details as HealingPotion).ToList(); }
         }
 
+
         private Player(int Gold,int Experience, int CurrentHitPoints, int MaxHitPoints):base(CurrentHitPoints,MaxHitPoints)
         {
             this.Gold = Gold;
@@ -339,14 +340,14 @@ namespace Engine
             if (!HasRequiredItemToEnterLocation(location))
             {
                 //wysiwetlamy wiadomosc i konczymy ruch, gracz nie moze tam wejsc
-                string message= "Musisz mieć " + location.ItemRequiredToEnter.Name + ", aby móc wejść do tej lokacji.";
+                string message = "Musisz mieć " + location.ItemRequiredToEnter.Name + ", aby móc wejść do tej lokacji.";
                 RaiseMessage(message, true);
                 return;
             }
-            
+
             CurrentLocation = location;
 
-            if (location.QuestAvailableHere != null)
+            if (location.HasQuest)
             {
                 bool playerAlreadyHasQuest = HasThisQuest(location.QuestAvailableHere);
                 bool playerAlreadyFinishedQuest = CompletedThisQuest(location.QuestAvailableHere);
@@ -360,41 +361,22 @@ namespace Engine
 
                         if (playerAlreadyHasItemsToFinishQuest)
                         {
-                            RaiseMessage("Ukończyłeś zadanie " + location.QuestAvailableHere.Name);
-                            RemoveQuestFinishedItems(location.QuestAvailableHere);
-
-                            //daj nagrody za questa
-                            RaiseMessage("Otrzymałeś " + location.QuestAvailableHere.RewardGold.ToString() +
-                                " sztuk złota nagrody za wykonanie zadania.");
-                            RaiseMessage("Otrzymałeś " + location.QuestAvailableHere.RewardExperiencePoints.ToString() +
-                                " punktów doświadczenia za wykonanie zadania.");
-                            RaiseMessage("Otrzymałeś " + location.QuestAvailableHere.RewardItem.Name.ToString() +
-                                " za wykonanie zadania.");
-
-                            Gold += location.QuestAvailableHere.RewardGold;
-                            AddExperiencePoints(location.QuestAvailableHere.RewardExperiencePoints);
-                            AddItemToInventory(location.QuestAvailableHere.RewardItem);
-                            MarkQuestAsFinished(location.QuestAvailableHere);
+                            GivePlayerQuestRewards(location.QuestAvailableHere);
                         }
                     }
                 }
                 else
                 {
-                    //gracz nie ma tego questa
-                    RaiseMessage("Otrzymałeś zadanie" + location.QuestAvailableHere.Name);
-                    RaiseMessage("Aby je wykonać musisz dostarczyć:");
-
-                    foreach (QuestFinishedItem item in location.QuestAvailableHere.QuestFinishedItems)
-                    {
-                        RaiseMessage(item.Quantity.ToString() + " " + item.Details.Name);
-                    }
-                    RaiseMessage("", true);
-
-                    Quests.Add(new PlayerQuest(location.QuestAvailableHere));
-
+                    GiveQuestToPlayer(location.QuestAvailableHere);
                 }
             }
 
+            SetTheCurrentMonsterForTheCurrentLocation(location);
+
+        }
+
+        private void SetTheCurrentMonsterForTheCurrentLocation(Location location)
+        {
             if (location.MonsterLivingHere != null)
             {
                 RaiseMessage("Widzisz " + location.MonsterLivingHere.Name + ". Musisz go pokonać.", true);
@@ -409,13 +391,45 @@ namespace Engine
                 {
                     _monsterLivingHere.LootTable.Add(item);
                 }
-                
+
             }
             else
             {
-                _monsterLivingHere = null;                
+                _monsterLivingHere = null;
             }
+        }
 
+        private void GivePlayerQuestRewards(Quest questDone)
+        {
+            RaiseMessage("Ukończyłeś zadanie " + questDone.Name);
+            RemoveQuestFinishedItems(questDone);
+
+            //daj nagrody za questa
+            RaiseMessage("Otrzymałeś " + questDone.RewardGold.ToString() +
+                " sztuk złota nagrody za wykonanie zadania.");
+            RaiseMessage("Otrzymałeś " + questDone.RewardExperiencePoints.ToString() +
+                " punktów doświadczenia za wykonanie zadania.");
+            RaiseMessage("Otrzymałeś " + questDone.RewardItem.Name.ToString() +
+                " za wykonanie zadania.");
+
+            Gold += questDone.RewardGold;
+            AddExperiencePoints(questDone.RewardExperiencePoints);
+            AddItemToInventory(questDone.RewardItem);
+            MarkQuestAsFinished(questDone);
+        }
+
+        private void GiveQuestToPlayer(Quest questToGive)
+        {
+            RaiseMessage("Otrzymałeś zadanie" + questToGive.Name);
+            RaiseMessage("Aby je wykonać musisz dostarczyć:");
+
+            foreach (QuestFinishedItem item in questToGive.QuestFinishedItems)
+            {
+                RaiseMessage(item.Quantity.ToString() + " " + item.Details.Name);
+            }
+            RaiseMessage("", true);
+
+            Quests.Add(new PlayerQuest(questToGive));
         }
 
         public void MoveNorth()
