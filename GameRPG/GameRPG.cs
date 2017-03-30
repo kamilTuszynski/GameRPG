@@ -21,15 +21,23 @@ namespace GameRPG
         public GameRPG()
         {
             InitializeComponent();
-            
-            if(File.Exists(PLAYER_DATA_FILE_NAME))
-            {
-                _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
-            }
-            else
+
+            _player = PlayerDataMapper.CreateFromDatabase();
+
+            if(_player==null)
             {
                 _player = Player.CreateDefaultPlayer();
+                //if (File.Exists(PLAYER_DATA_FILE_NAME))
+                //{
+                //    _player = Player.CreatePlayerFromXmlString(File.ReadAllText(PLAYER_DATA_FILE_NAME));
+                //}
+                //else
+                //{
+                //    _player = Player.CreateDefaultPlayer();
+                //}
             }
+            
+            
 
             //bindowanie statystyk
             lblHitPoints.DataBindings.Add(new Binding("Text",_player,"CurrentHitPoints"));
@@ -148,6 +156,8 @@ namespace GameRPG
         private void GameRPG_FormClosing(object sender, FormClosingEventArgs e)
         {
             File.WriteAllText(PLAYER_DATA_FILE_NAME, _player.ToXmlString());
+
+            PlayerDataMapper.SaveToDatabase(_player);
         }
 
         private void cboWeapons_SelectedIndexChanged(object sender, EventArgs e)

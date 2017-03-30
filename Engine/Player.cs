@@ -334,7 +334,7 @@ namespace Engine
 
         }
 
-        private void MoveTo(Location location)
+        public void MoveTo(Location location)
         {
             if (!HasRequiredItemToEnterLocation(location))
             {
@@ -559,6 +559,14 @@ namespace Engine
         {
             if (OnDeath != null)
                 OnDeath(this, new DeathMessageEventArgs(message));
+        }
+
+        public static Player CreatePlayerFromDatabase(int currentHitPoints,int maxHitPoints,
+            int gold, int experience)
+        {
+            Player player = new Player(currentHitPoints, maxHitPoints, gold, experience);
+
+            return player;
         }
 
 
